@@ -1,0 +1,6 @@
+.root {
+    -fx-alignment: center;
+    -fx-background-image: url("/images/background.png");
+    -fx-background-size: cover;
+    -fx-padding: 30;
+}
