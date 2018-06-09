@@ -32,8 +32,8 @@ public class AppUI extends Application {
         pane.getChildren().add(areaReport);
 
         Scene scene = new Scene(pane);
-        scene.getStylesheets().clear();
-        scene.getStylesheets().addAll("/css/RootStyle.css", "/css/TextAreaStyle.css");
+        scene.getRoot().getStylesheets().clear();
+        scene.getRoot().getStylesheets().addAll("/css/RootStyle.css", "/css/TextAreaStyle.css");
 
         stage.setTitle("System Properties");
         stage.setMaximized(true);
