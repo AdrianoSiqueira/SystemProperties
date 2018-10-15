@@ -4,6 +4,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.layout.Region;
 import javafx.stage.FileChooser;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -41,33 +42,32 @@ class App {
         }
 
         report.append(separator)
-                .append("\n");
+                .append("\n")
+                .append(separator)
+                .append("InetAddress.getLocalHost() \n")
+                .append(separator);
 
         try {
             InetAddress address = InetAddress.getLocalHost();
-            report.append(separator)
-                    .append("InetAddress.getLocalHost() \n")
-                    .append(separator)
-                    .append("IP: ")
+            report.append("IP: ")
                     .append(address.getHostAddress())
                     .append("\n")
                     .append("Host: ")
-                    .append(address.getHostName())
-                    .append("\n")
-                    .append(separator)
-                    .append("\n");
-        } catch (UnknownHostException ignored) {
+                    .append(address.getHostName());
+        } catch (UnknownHostException e) {
+            report.append(e.toString());
         }
 
-
-        report.append(separator)
+        report.append("\n")
+                .append(separator)
+                .append("\n")
+                .append(separator)
                 .append("Runtime.getRuntime() \n")
                 .append(separator)
                 .append("CPUs: ")
                 .append(Runtime.getRuntime().availableProcessors())
                 .append("\n")
-                .append(separator)
-                .append("\n");
+                .append(separator);
 
         return report.toString();
     }
@@ -80,11 +80,12 @@ class App {
         File file = chooser.showSaveDialog(null);
 
         if (file != null) {
-            try (FileWriter writer = new FileWriter(file)) {
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(file))) {
                 writer.write(s);
-                writer.close();
+                writer.flush();
                 return true;
-            } catch (IOException ignored) {
+            } catch (IOException e) {
+                showMessage(Alert.AlertType.ERROR, "Exception", e.toString());
             }
         }
 
