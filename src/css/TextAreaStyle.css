@@ -17,13 +17,13 @@
     -fx-border-width: 4px;
 }
 
-/* Removes the scrolbars */
+/* Removes the scrollbars */
 .text-area .scroll-pane {
     -fx-hbar-policy: never;
     -fx-vbar-policy: never;
 }
 
-/* The other subnodes must be set to transparent to not interfer in background */
+/* The other sub nodes must be set to transparent to not interfere in background */
 .text-area .scroll-pane,
 .text-area .scroll-pane .viewport,
 .text-area .scroll-pane .content {
